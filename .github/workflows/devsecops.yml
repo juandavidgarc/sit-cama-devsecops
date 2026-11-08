@@ -43,7 +43,7 @@ jobs:
           python3 -m pip install semgrep
           semgrep scan --config auto --error --severity ERROR
       - name: SCA Trivy
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: 'fs'
           severity: 'CRITICAL,HIGH'
@@ -80,7 +80,7 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
       - name: Trivy sobre la imagen
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}
           severity: 'CRITICAL'
