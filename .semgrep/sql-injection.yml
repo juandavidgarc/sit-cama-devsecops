@@ -1,0 +1,15 @@
+rules:
+  - id: sit-cama-sql-injection
+    mode: taint
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Entrada del usuario usada para construir una consulta SQL (inyeccion SQL). Usa consultas parametrizadas.
+    pattern-sources:
+      - pattern-either:
+          - pattern: req.query.$X
+          - pattern: req.body.$X
+          - pattern: req.params.$X
+    pattern-sinks:
+      - patterns:
+          - pattern: $DB.query($SQL, ...)
+          - focus-metavariable: $SQL

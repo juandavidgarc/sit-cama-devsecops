@@ -41,7 +41,7 @@ jobs:
       - name: SAST Semgrep
         run: |
           python3 -m pip install semgrep
-          semgrep scan --config auto --error --severity ERROR
+          semgrep scan --config auto --config .semgrep/ --error --severity ERROR
       - name: SCA Trivy
         uses: aquasecurity/trivy-action@v0.36.0
         with:
